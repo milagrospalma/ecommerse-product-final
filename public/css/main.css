@@ -1,0 +1,14 @@
+.container {
+  margin-top: 5em;
+}
+
+.controls {
+  width: 36px;
+}
+
+.count {
+  text-align: center;
+  display: inline-block;
+  width: 30px;
+  margin: 0 5px;
+}

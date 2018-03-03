@@ -1,10 +1,10 @@
-var begin = () => {
+let begin = () => {
   const urlMain = 'https://api.mercadolibre.com/sites/MPE/search?category=MPE1648'; // Categoria: Computacion
   const urlSubCategory = 'https://api.mercadolibre.com/sites/MPE/search?q=';
   const $container = $('#container');
 
   /* Funcion - Cargar imagenes en container */
-  var loadProducts = (url) => {
+  let loadProducts = (url) => {
     $.ajax({
       url: url,
       success: (data) => {
@@ -34,7 +34,42 @@ var begin = () => {
       }
     });
   };
+
   /* Carga imagenes de API - Catetegoria Computación */
   loadProducts(urlMain);
+
+  /* page.js */
+  page('/', index);
+  page('/laptops', laptops);
+  page('/cpu', cpu);
+  page('/printers', printers);
+  page('/keyboards', keyboards);
+  page();
+
+  let index = () => {
+    $container.html('');
+    loadProducts(urlMain);
+  };
+
+  let laptops = () => {
+    const urlLaptops = urlSubCategory + 'laptop';
+    loadProducts(urlLaptops);
+    $container.text('Laptops');
+  };
+  let cpu = () => {
+    const urlCpu = urlSubCategory + 'cpu';
+    loadProducts(urlCpu);
+    $container.text('CPU');
+  };
+  let printers = () => {
+    const urlPrinters = urlSubCategory + 'impresoras';
+    loadProducts(urlPrinters);
+    $container.text('Impresoras');
+  };
+  let keyboards = () => {
+    const urlKeyboards = urlSubCategory + 'teclados';
+    loadProducts(urlKeyboards);
+    $container.text('Teclados');
+  };
 };
 $(document).ready(begin);
